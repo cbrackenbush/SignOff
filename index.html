@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignOff</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+        #header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        #logo {
+            width: 75px;
+            height: auto;
+            margin-right: 10px;
+        }
+        #translator-title {
+            font-size: 24px;
+        }
+        #translator-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding: 10px;
+            word-wrap: break-word;
+        }
+        #inputText {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .word-box {
+            display: inline-block;
+            border: 1px solid #ccc;
+            margin: 5px;
+            padding: 10px;
+            text-align: center;
+        }
+        .word-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        #aslImages {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        #aslImages img {
+            width: 62.5px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img id="logo" src="img/logo.png" alt="logo">
+        <h1 id="translator-title">SignOff</h1>
+    </div>
+
+    <div id="translator-container">
+        <input type="text" id="inputText" placeholder="Enter text to see ASL images" onkeypress="handleKeyPress(event)">
+        <button onclick="showASLImages()">Submit</button>
+        <div id="aslImages"></div>
+    </div>
+
+    <script>
+        function handleKeyPress(event) {
+    var key = event.key;
+
+    // Check if the key is a letter, a number, a space, Enter, or Backspace
+    if (!(/[a-zA-Z0-9\s]/.test(key) || event.keyCode === 13 || event.keyCode === 8)) {
+        event.preventDefault();
+    }
+
+    // Check if the Enter key (key code 13) was pressed
+    if (event.keyCode === 13) {
+        showASLImages();
+    }
+}
+
+        function showASLImages() {
+            var inputText = document.getElementById('inputText').value;
+            var aslImagesContainer = document.getElementById('aslImages');
+
+            // Split the input text into an array of words
+            var words = inputText.split(/\s+/);
+
+            // Clear previous word boxes
+            aslImagesContainer.innerHTML = '';
+
+            // Display ASL images for each word
+            words.forEach(function(word) {
+                // Skip empty words
+                if (word.trim() !== '') {
+                    var wordBox = document.createElement('div');
+                    wordBox.className = 'word-box';
+
+                    // Add header with the word
+                    var wordHeader = document.createElement('div');
+                    wordHeader.className = 'word-header';
+                    wordHeader.textContent = word;
+                    wordBox.appendChild(wordHeader);
+
+                    // Simulate image display (replace with actual mapping logic)
+                    var aslImages = simulateASLImages(word);
+
+                    // Display ASL images
+                    aslImages.forEach(function(imageSrc) {
+                        var img = document.createElement('img');
+                        img.src = imageSrc;
+                        wordBox.appendChild(img);
+                    });
+
+                    // Append the word box to the container
+                    aslImagesContainer.appendChild(wordBox);
+                }
+            });
+        }
+
+        function simulateASLImages(text) {
+            // This is a placeholder function for simulation. You would replace this
+            // with a real mapping logic or use an API that provides ASL images.
+            // For simplicity, this example uses a limited set of predefined images.
+            var aslImages = {
+                A: 'img/a.png',
+                B: 'img/b.png',
+                C: 'img/c.png',
+                D: 'img/d.png',
+                E: 'img/e.png',
+                F: 'img/f.png',
+                G: 'img/g.png',
+                H: 'img/h.png',
+                I: 'img/i.png',
+                J: 'img/j.png',
+                K: 'img/k.png',
+                L: 'img/l.png',
+                M: 'img/m.png',
+                N: 'img/n.png',
+                O: 'img/o.png',
+                P: 'img/p.png',
+                Q: 'img/q.png',
+                R: 'img/r.png',
+                S: 'img/s.png',
+                T: 'img/t.png',
+                U: 'img/u.png',
+                V: 'img/v.png',
+                W: 'img/w.png',
+                X: 'img/x.png',
+                Y: 'img/y.png',
+                Z: 'img/z.png',
+                0: 'img/0.png',
+                1: 'img/1.png',
+                2: 'img/2.png',
+                3: 'img/3.png',
+                4: 'img/4.png',
+                5: 'img/5.png',
+                6: 'img/6.png',
+                7: 'img/7.png',
+                8: 'img/8.png',
+                9: 'img/9.png',
+                ' ': 'img/space.png',  // Add a space mapping
+                // Add more mappings as needed
+            };
+
+            var upperCaseText = text.toUpperCase();
+            var imagesToShow = [];
+
+            for (var i = 0; i < upperCaseText.length; i++) {
+                var currentChar = upperCaseText.charAt(i);
+                if (aslImages[currentChar]) {
+                    imagesToShow.push(aslImages[currentChar]);
+                }
+            }
+
+            return imagesToShow;
+        }
+    </script>
+</body>
+</html>

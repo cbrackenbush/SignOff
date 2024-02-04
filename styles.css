@@ -1,0 +1,42 @@
+
+.body {
+    font-family: 'Josefin Sans',sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+}
+#translator-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 10px;
+    word-wrap: break-word;
+}
+#inputText {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.word-box {
+    display: inline-block;
+    border: 1px solid #ccc;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+}
+.word-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+#aslImages {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#aslImages img {
+    width: 62.5px;
+    margin: 5px;
+}
