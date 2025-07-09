@@ -2,6 +2,7 @@ import cv2
 from cvzone.HandTrackingModule import HandDetector
 import numpy as np
 import math
+import time
 # This script captures video from the webcam, detects hands, and crops the detected hand region.
 
 # Initialize the hand detector
@@ -13,6 +14,10 @@ offset = 20  # Offset for cropping the image
 
 imgSize = 300  # Size to which the cropped image will be resized
 # Start capturing video from the webcam
+
+folder = "Data/Z"
+
+counter = 0  # Counter for saving images
 
 while True:
     success, img = cap.read()
@@ -54,4 +59,9 @@ while True:
             cv2.imshow("ImageWhite", imgWhite)
 
     cv2.imshow("Image", img)
-    cv2.waitKey(1) 
+    key = cv2.waitKey(1) 
+    if key == ord('s'):
+        counter += 1  
+        # Save the cropped image to the specified folder
+        cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', imgWhite)
+        print(counter)
